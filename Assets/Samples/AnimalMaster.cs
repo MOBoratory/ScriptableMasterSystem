@@ -5,6 +5,7 @@ namespace MOB.ScriptableMasterSystem.Samples
     /// <summary>
     /// 動物マスター
     /// </summary>
+    [CreateAssetMenu(order = 1, fileName = "AnimalMaster", menuName = "MOB/ScriptableMasterSystem/Samples/AnimalMaster")]
     public sealed class AnimalMaster : MasterBase
     {
         [SerializeField] private string _animalName;
