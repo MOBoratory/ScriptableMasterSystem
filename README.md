@@ -1,0 +1,2 @@
+# ScriptableMasterSystem
+ScriptableObjectでMaster実装、管理
