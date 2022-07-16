@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 namespace MOB.ScriptableMasterSystem.Samples
 {
     /// <summary>
-    /// SampleScene
+    ///     SampleScene
     /// </summary>
     public sealed class SampleScene : MonoBehaviour
     {
