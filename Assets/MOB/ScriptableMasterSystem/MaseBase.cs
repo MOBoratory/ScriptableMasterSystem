@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MOB.ScriptableMasterSystem
 {
     /// <summary>
-    /// Master基底クラス
+    ///     Master基底クラス
     /// </summary>
     public abstract class MasterBase : ScriptableObject
     {
