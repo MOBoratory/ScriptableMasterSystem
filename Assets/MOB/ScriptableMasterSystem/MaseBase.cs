@@ -10,7 +10,7 @@ namespace MOB.ScriptableMasterSystem
     /// </summary>
     public abstract class MasterBase : ScriptableObject
     {
-        private const string MasterRootDirectoryPath = "Masters/";
+        private const string MasterRootDirectoryPath = "MasterData/";
 
         private static readonly Dictionary<Type, MasterBase[]> MasterCachesByType = new();
 

@@ -15,5 +15,10 @@ namespace MOB.ScriptableMasterSystem.Samples
         public string AnimalName => _animalName;
         /// <summary>鳴き声</summary>
         public string Bark => _bark;
+
+        public static AnimalMaster GetById(int id)
+        {
+            return GetById<AnimalMaster>(id);
+        }
     }
 }
