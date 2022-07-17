@@ -12,7 +12,7 @@ namespace MOB.ScriptableMasterSystem
     {
         private const string MasterRootDirectoryPath = "MasterData/";
 
-        private static readonly Dictionary<Type, MasterBase[]> MasterCachesByType = new();
+        private static readonly Dictionary<Type, IReadOnlyDictionary<int, MasterBase>> MasterCachesByType = new();
 
         [SerializeField] private int _id;
 
@@ -23,11 +23,9 @@ namespace MOB.ScriptableMasterSystem
             where T : MasterBase
         {
             var masterDirectoryPath = $"{MasterRootDirectoryPath}{typeof(T).Name}";
-
             var masters = Resources.LoadAll<MasterBase>(masterDirectoryPath)
-                .Select(x => (T)x)
-                .ToArray();
-            MasterCachesByType[typeof(T)] = masters;
+                .Select(x => (T)x);
+            MasterCachesByType[typeof(T)] = masters.ToDictionary(x => x.Id, x => (MasterBase)x);
         }
 
         /// <summary>
@@ -39,13 +37,15 @@ namespace MOB.ScriptableMasterSystem
             where T : MasterBase
         {
             // キャッシュがまだ無ければキャッシュ作成
-            if (!MasterCachesByType.ContainsKey(typeof(T))) CreateCaches<T>();
+            if (!MasterCachesByType.ContainsKey(typeof(T)))
+            {
+                CreateCaches<T>();
+                if (!MasterCachesByType.ContainsKey(typeof(T))) throw new KeyNotFoundException();
+            }
 
-            foreach (var master in MasterCachesByType[typeof(T)].Select(x => (T)x))
-                if (master.Id == id)
-                    return master;
+            var masterById = MasterCachesByType[typeof(T)];
+            if (masterById.TryGetValue(id, out var master)) return (T)master;
 
-            // not found.
             return default;
         }
     }
