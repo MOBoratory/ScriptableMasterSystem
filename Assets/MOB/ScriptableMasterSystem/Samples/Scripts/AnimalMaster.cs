@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MOB.ScriptableMasterSystem.Samples
+namespace Mob.ScriptableMasterSystem.Samples
 {
     /// <summary>
     /// 動物マスター
